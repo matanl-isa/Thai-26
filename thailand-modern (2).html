@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תכנון טיול לתאילנד</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&family=Alef:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A84FF;
+            --secondary: #FF2D55;
+            --success: #30D158;
+            --warning: #FF9500;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F2F7;
+            --bg-tertiary: #E5E5EA;
+            --text-primary: #000000;
+            --text-secondary: #3C3C43;
+            --text-tertiary: #8E8E93;
+            --border: #C6C6C8;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --spacing: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Assistant', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        h1 {
+            font-family: 'Alef', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: 0;
+            position: sticky;
+            top: 88px;
+            z-index: 999;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav::-webkit-scrollbar {
+            height: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+        }
+
+        .nav-btn {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+            font-family: 'Assistant', sans-serif;
+        }
+
+        .nav-btn:hover {
+            color: var(--primary);
+        }
+
+        .nav-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Assistant', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0077ED;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'Assistant', sans-serif;
+            transition: all 0.2s ease;
+            background: var(--bg-primary);
+        }
+
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(10, 132, 255, 0.1);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Day Item */
+        .day-item {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .day-number {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .day-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .activity-item {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.75rem;
+            position: relative;
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-time {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0.5rem;
+            line-height: 1;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: var(--bg-primary);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+
+        .info-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .info-item {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--bg-tertiary);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .info-value {
+            color: var(--text-secondary);
+            text-align: left;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .empty-state-text {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Weather Widget */
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .weather-card {
+            background: linear-gradient(135deg, var(--primary), #0077ED);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .weather-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .weather-temp {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .weather-day {
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        /* Packing List */
+        .packing-item {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .packing-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .packing-item.checked {
+            opacity: 0.5;
+            text-decoration: line-through;
+            border-color: var(--success);
+        }
+
+        .packing-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .packing-item.checked .packing-checkbox {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .packing-item.checked .packing-checkbox::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav {
+                top: 76px;
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-secondary { color: var(--text-secondary); }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .flex { display: flex; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .gap-1 { gap: 1rem; }
+
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* ========== DASHBOARD STYLES (Stephen Few Methodology) ========== */
+        
+        /* KPI Row - High-density information display */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .kpi-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .kpi-icon {
+            font-size: 2rem;
+            opacity: 0.9;
+        }
+
+        .kpi-content {
+            flex: 1;
+        }
+
+        .kpi-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .kpi-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .kpi-trend {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .kpi-trend.up {
+            color: var(--success);
+            background: rgba(48, 209, 88, 0.1);
+        }
+
+        .kpi-trend.down {
+            color: var(--secondary);
+            background: rgba(255, 45, 85, 0.1);
+        }
+
+        .kpi-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--bg-tertiary);
+        }
+
+        .kpi-progress-bar {
+            height: 100%;
+            background: var(--success);
+            transition: width 0.5s ease;
+        }
+
+        /* Dashboard Grid - Following Few's principle of proximity */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1rem;
+        }
+
+        .dashboard-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px var(--shadow);
+        }
+
+        .dashboard-card .card-header {
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .dashboard-card .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Card sizing based on content importance */
+        .chart-card {
+            grid-column: span 4;
+        }
+
+        .map-card {
+            grid-column: span 8;
+        }
+
+        .timeline-card {
+            grid-column: span 8;
+        }
+
+        .weather-card {
+            grid-column: span 4;
+        }
+
+        .stats-card {
+            grid-column: span 4;
+        }
+
+        /* Chart containers */
+        .chart-container {
+            height: 200px;
+            position: relative;
+        }
+
+        .chart-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--bg-tertiary);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* Map container */
+        .map-container {
+            height: 280px;
+            background: linear-gradient(135deg, #E8F4F8 0%, #D1E8E2 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--bg-tertiary);
+        }
+
+        .map-stat {
+            text-align: center;
+        }
+
+        .map-stat .stat-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .map-stat .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Category bars - Horizontal bar chart (Few's preference) */
+        .category-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .category-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .category-bar-label {
+            width: 80px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-align: left;
+        }
+
+        .category-bar-track {
+            flex: 1;
+            height: 24px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .category-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            padding-right: 8px;
+        }
+
+        .category-bar-value {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+            margin-right: auto;
+            padding-right: 8px;
+        }
+
+        /* Timeline */
+        .timeline-container {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem 0;
+        }
+
+        .timeline-item {
+            flex: 0 0 auto;
+            min-width: 120px;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .timeline-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .timeline-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .timeline-day {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        .timeline-date {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0.25rem 0;
+        }
+
+        .timeline-location {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Weather mini grid */
+        .weather-mini-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+        }
+
+        .weather-mini {
+            text-align: center;
+            padding: 0.75rem 0.25rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+
+        .weather-mini-day {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .weather-mini-icon {
+            font-size: 1.5rem;
+            margin: 0.25rem 0;
+        }
+
+        .weather-mini-temp {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Stats table - Clean data presentation */
+        .stats-table {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-row.highlight {
+            background: var(--bg-secondary);
+            margin: 0 -1.25rem;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .stat-row .stat-name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .stat-row .stat-value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Responsive dashboard */
+        @media (max-width: 1200px) {
+            .chart-card,
+            .map-card,
+            .timeline-card,
+            .weather-card,
+            .stats-card {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-card,
+            .map-card,
+            .timeline-card,
+            .weather-card,
+            .stats-card,
+            .dashboard-card {
+                grid-column: span 1;
+            }
+
+            .kpi-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .kpi-value {
+                font-size: 1.4rem;
+            }
+
+            .weather-mini-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .weather-mini:nth-child(n+5) {
+                display: none;
+            }
+        }
+
+        .sync-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: var(--bg-secondary);
+        }
+
+        .sync-status.connected {
+            background: rgba(48, 209, 88, 0.15);
+            color: var(--success);
+        }
+
+        .sync-status.syncing {
+            background: rgba(255, 149, 0, 0.15);
+            color: var(--warning);
+        }
+
+        .sync-status.offline {
+            background: rgba(142, 142, 147, 0.15);
+            color: var(--text-tertiary);
+        }
+
+        .sync-icon {
+            font-size: 0.75rem;
+        }
+
+        .sync-status.syncing .sync-icon {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* Share Modal specific */
+        .share-code {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .share-code-value {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: var(--primary);
+            font-family: monospace;
+        }
+
+        .share-link {
+            background: var(--bg-secondary);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            word-break: break-all;
+            margin: 1rem 0;
+        }
+
+        .or-divider {
+            text-align: center;
+            color: var(--text-tertiary);
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .or-divider::before { right: 55%; }
+        .or-divider::after { left: 55%; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1>🇹🇭 תכנון טיול לתאילנד</h1>
+                <p class="header-subtitle">ארגן את הטיול המושלם שלך</p>
+            </div>
+            <div class="header-actions">
+                <div id="sync-status" class="sync-status">
+                    <span class="sync-icon">●</span>
+                    <span class="sync-text">לא מחובר</span>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="openShareModal()">🔗 שיתוף</button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showTab('dashboard')">📊 דשבורד</button>
+            <button class="nav-btn" onclick="showTab('itinerary')">📅 מסלול הטיול</button>
+            <button class="nav-btn" onclick="showTab('flights')">✈️ טיסות</button>
+            <button class="nav-btn" onclick="showTab('hotels')">🏨 בתי מלון</button>
+            <button class="nav-btn" onclick="showTab('attractions')">🎯 אטרקציות</button>
+            <button class="nav-btn" onclick="showTab('weather')">🌤️ מזג אוויר</button>
+            <button class="nav-btn" onclick="showTab('packing')">🎒 רשימת ציוד</button>
+            <button class="nav-btn" onclick="showTab('budget')">💰 תקציב</button>
+            <button class="nav-btn" onclick="showTab('info')">ℹ️ מידע</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- DASHBOARD TAB -->
+        <div id="dashboard" class="tab-content active">
+            <!-- KPI Row -->
+            <div class="kpi-row">
+                <div class="kpi-card">
+                    <div class="kpi-icon">💰</div>
+                    <div class="kpi-content">
+                        <div class="kpi-value" id="kpi-total-budget">₪0</div>
+                        <div class="kpi-label">תקציב כולל</div>
+                    </div>
+                    <div class="kpi-trend up" id="kpi-budget-trend">
+                        <span class="trend-icon">—</span>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">📅</div>
+                    <div class="kpi-content">
+                        <div class="kpi-value" id="kpi-total-days">0</div>
+                        <div class="kpi-label">ימי טיול</div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">🎯</div>
+                    <div class="kpi-content">
+                        <div class="kpi-value" id="kpi-total-activities">0</div>
+                        <div class="kpi-label">פעילויות</div>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon">✅</div>
+                    <div class="kpi-content">
+                        <div class="kpi-value" id="kpi-packing-progress">0%</div>
+                        <div class="kpi-label">התקדמות אריזה</div>
+                    </div>
+                    <div class="kpi-progress">
+                        <div class="kpi-progress-bar" id="kpi-packing-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Budget Breakdown Chart -->
+                <div class="dashboard-card chart-card">
+                    <div class="card-header">
+                        <h3 class="card-title">📊 התפלגות תקציב</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                    <div id="budget-legend" class="chart-legend"></div>
+                </div>
+
+                <!-- Map Card -->
+                <div class="dashboard-card map-card">
+                    <div class="card-header">
+                        <h3 class="card-title">🗺️ מפת המסלול</h3>
+                    </div>
+                    <div id="trip-map" class="map-container"></div>
+                    <div class="map-stats">
+                        <div class="map-stat">
+                            <span class="stat-value" id="map-cities">0</span>
+                            <span class="stat-label">ערים</span>
+                        </div>
+                        <div class="map-stat">
+                            <span class="stat-value" id="map-distance">0</span>
+                            <span class="stat-label">ק"מ משוער</span>
+                        </div>
+                        <div class="map-stat">
+                            <span class="stat-value" id="map-flights">0</span>
+                            <span class="stat-label">טיסות</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Cost Chart -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">📈 עלות יומית משוערת</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="dailyCostChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Trip Timeline -->
+                <div class="dashboard-card timeline-card">
+                    <div class="card-header">
+                        <h3 class="card-title">🕐 ציר זמן</h3>
+                    </div>
+                    <div id="trip-timeline" class="timeline-container"></div>
+                </div>
+
+                <!-- Cost per Category -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h3 class="card-title">💳 עלות לפי קטגוריה</h3>
+                    </div>
+                    <div id="category-bars" class="category-bars"></div>
+                </div>
+
+                <!-- Weather Overview -->
+                <div class="dashboard-card weather-card">
+                    <div class="card-header">
+                        <h3 class="card-title">🌤️ תחזית מזג אוויר</h3>
+                    </div>
+                    <div class="weather-mini-grid" id="weather-forecast">
+                        <div class="weather-mini">
+                            <div class="weather-mini-day">א'</div>
+                            <div class="weather-mini-icon">☀️</div>
+                            <div class="weather-mini-temp">30°</div>
+                        </div>
+                        <div class="weather-mini">
+                            <div class="weather-mini-day">ב'</div>
+                            <div class="weather-mini-icon">🌤️</div>
+                            <div class="weather-mini-temp">29°</div>
+                        </div>
+                        <div class="weather-mini">
+                            <div class="weather-mini-day">ג'</div>
+                            <div class="weather-mini-icon">☀️</div>
+                            <div class="weather-mini-temp">31°</div>
+                        </div>
+                        <div class="weather-mini">
+                            <div class="weather-mini-day">ד'</div>
+                            <div class="weather-mini-icon">🌤️</div>
+                            <div class="weather-mini-temp">28°</div>
+                        </div>
+                        <div class="weather-mini">
+                            <div class="weather-mini-day">ה'</div>
+                            <div class="weather-mini-icon">☀️</div>
+                            <div class="weather-mini-temp">30°</div>
+                        </div>
+                        <div class="weather-mini">
+                            <div class="weather-mini-day">ו'</div>
+                            <div class="weather-mini-icon">⛅</div>
+                            <div class="weather-mini-temp">27°</div>
+                        </div>
+                        <div class="weather-mini">
+                            <div class="weather-mini-day">ש'</div>
+                            <div class="weather-mini-icon">☀️</div>
+                            <div class="weather-mini-temp">29°</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Table -->
+                <div class="dashboard-card stats-card">
+                    <div class="card-header">
+                        <h3 class="card-title">📋 סיכום מהיר</h3>
+                    </div>
+                    <div class="stats-table">
+                        <div class="stat-row">
+                            <span class="stat-name">✈️ טיסות</span>
+                            <span class="stat-value" id="stat-flights">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">🏨 לילות מלון</span>
+                            <span class="stat-value" id="stat-nights">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">🎯 אטרקציות</span>
+                            <span class="stat-value" id="stat-attractions">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-name">🎒 פריטים לאריזה</span>
+                            <span class="stat-value" id="stat-packing">0</span>
+                        </div>
+                        <div class="stat-row highlight">
+                            <span class="stat-name">💵 עלות ליום (ממוצע)</span>
+                            <span class="stat-value" id="stat-daily-avg">₪0</span>
+                        </div>
+                        <div class="stat-row highlight">
+                            <span class="stat-name">👨‍👩‍👧‍👦 עלות לנפש</span>
+                            <span class="stat-value" id="stat-per-person">₪0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ITINERARY TAB -->
+        <div id="itinerary" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">מסלול הטיול</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openDayModal()">+ יום חדש</button>
+                </div>
+            </div>
+
+            <div id="days-container">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📅</div>
+                    <h3 class="empty-state-title">טרם הוספת ימים למסלול</h3>
+                    <p class="empty-state-text">התחל לבנות את מסלול הטיול שלך על ידי הוספת ימים ופעילויות</p>
+                    <button class="btn btn-primary" onclick="openDayModal()">הוסף יום ראשון</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLIGHTS TAB -->
+        <div id="flights" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">טיסות</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openFlightModal()">+ טיסה חדשה</button>
+                </div>
+            </div>
+
+            <div id="flights-container">
+                <div class="empty-state">
+                    <div class="empty-state-icon">✈️</div>
+                    <h3 class="empty-state-title">טרם הוספת טיסות</h3>
+                    <p class="empty-state-text">הוסף את פרטי הטיסות שלך - בינלאומיות ופנים</p>
+                    <button class="btn btn-primary" onclick="openFlightModal()">הוסף טיסה</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOTELS TAB -->
+        <div id="hotels" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">בתי מלון</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openHotelModal()">+ מלון חדש</button>
+                </div>
+            </div>
+
+            <div id="hotels-container">
+                <div class="empty-state">
+                    <div class="empty-state-icon">🏨</div>
+                    <h3 class="empty-state-title">טרם הוספת מלונות</h3>
+                    <p class="empty-state-text">הוסף את פרטי המלונות שבהם תתארח</p>
+                    <button class="btn btn-primary" onclick="openHotelModal()">הוסף מלון</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ATTRACTIONS TAB -->
+        <div id="attractions" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">אטרקציות</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAttractionModal()">+ אטרקציה חדשה</button>
+                </div>
+            </div>
+
+            <div id="attractions-container" class="grid grid-3">
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <div class="empty-state-icon">🎯</div>
+                    <h3 class="empty-state-title">טרם הוספת אטרקציות</h3>
+                    <p class="empty-state-text">הוסף מקומות שתרצה לבקר בהם</p>
+                    <button class="btn btn-primary" onclick="openAttractionModal()">הוסף אטרקציה</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEATHER TAB -->
+        <div id="weather" class="tab-content">
+            <div class="card">
+                <h2 class="card-title mb-1">תחזית מזג אוויר</h2>
+                <p class="text-secondary">עדכן את תחזית מזג האוויר לתאריכי הטיול</p>
+            </div>
+
+            <div class="weather-grid">
+                <div class="weather-card">
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp">30°</div>
+                    <div class="weather-day">יום ראשון</div>
+                </div>
+                <div class="weather-card">
+                    <div class="weather-icon">🌤️</div>
+                    <div class="weather-temp">29°</div>
+                    <div class="weather-day">יום שני</div>
+                </div>
+                <div class="weather-card">
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-temp">31°</div>
+                    <div class="weather-day">יום שלישי</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PACKING TAB -->
+        <div id="packing" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">רשימת ציוד</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openPackingModal()">+ פריט חדש</button>
+                </div>
+            </div>
+
+            <div id="packing-container">
+                <div class="card">
+                    <h3 class="info-title">👕 ביגוד</h3>
+                    <div id="packing-clothing"></div>
+                </div>
+
+                <div class="card">
+                    <h3 class="info-title">💊 בריאות</h3>
+                    <div id="packing-health"></div>
+                </div>
+
+                <div class="card">
+                    <h3 class="info-title">📱 טכנולוגיה</h3>
+                    <div id="packing-tech"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BUDGET TAB -->
+        <div id="budget" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">תקציב הטיול</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openBudgetModal()">+ הוצאה חדשה</button>
+                </div>
+                <div id="budget-total" class="mt-1">
+                    <div class="flex-between">
+                        <span class="info-label" style="font-size: 1.25rem;">סה"כ משוער:</span>
+                        <span style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">₪0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="budget-container"></div>
+        </div>
+
+        <!-- INFO TAB -->
+        <div id="info" class="tab-content">
+            <div class="grid grid-2">
+                <div class="info-card">
+                    <h3 class="info-title">🚨 מספרי חירום</h3>
+                    <div class="info-item">
+                        <span class="info-label">משטרה</span>
+                        <span class="info-value">191</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">אמבולנס</span>
+                        <span class="info-value">1669</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">כבאות</span>
+                        <span class="info-value">199</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">שגרירות ישראל</span>
+                        <span class="info-value">+66-2-204-9200</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="info-title">💱 מטבע</h3>
+                    <div class="info-item">
+                        <span class="info-label">מטבע מקומי</span>
+                        <span class="info-value">באט תאילנדי (THB)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">שער משוער</span>
+                        <span class="info-value">~10.5 באט ל-₪1</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">עמלת כספומט</span>
+                        <span class="info-value">220 באט (~20 ₪)</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="info-title">📱 תקשורת</h3>
+                    <div class="info-item">
+                        <span class="info-label">ספקים מומלצים</span>
+                        <span class="info-value">AIS, TrueMove, Dtac</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">מחיר SIM</span>
+                        <span class="info-value">299-599 באט לשבוע</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">איפה לקנות</span>
+                        <span class="info-value">שדה תעופה, 7-Eleven</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="info-title">💊 בריאות</h3>
+                    <div class="info-item">
+                        <span class="info-label">חיסונים</span>
+                        <span class="info-value">לא חובה, מומלץ הפטיטיס A</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">מים</span>
+                        <span class="info-value">רק מבקבוקים סגורים</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">ביטוח</span>
+                        <span class="info-value">חובה - כיסוי רפואי מלא</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Day Modal -->
+    <div id="dayModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">הוסף יום למסלול</h3>
+                <button class="close-btn" onclick="closeDayModal()">×</button>
+            </div>
+            <form onsubmit="addDay(event)">
+                <div class="form-group">
+                    <label class="form-label">מספר יום</label>
+                    <input type="number" id="dayNumber" class="form-input" required min="1">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">תאריך</label>
+                    <input type="date" id="dayDate" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">כותרת היום</label>
+                    <input type="text" id="dayTitle" class="form-input" placeholder="למשל: הגעה לבנגקוק" required>
+                </div>
+                <div class="flex gap-1">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">שמור</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeDayModal()">ביטול</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Activity Modal -->
+    <div id="activityModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">הוסף פעילות</h3>
+                <button class="close-btn" onclick="closeActivityModal()">×</button>
+            </div>
+            <form onsubmit="addActivity(event)">
+                <input type="hidden" id="activityDayId">
+                <div class="form-group">
+                    <label class="form-label">שעה</label>
+                    <input type="time" id="activityTime" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">כותרת</label>
+                    <input type="text" id="activityTitle" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">תיאור</label>
+                    <textarea id="activityDesc" class="form-textarea"></textarea>
+                </div>
+                <div class="flex gap-1">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">שמור</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeActivityModal()">ביטול</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Flight Modal -->
+    <div id="flightModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">הוסף טיסה</h3>
+                <button class="close-btn" onclick="closeFlightModal()">×</button>
+            </div>
+            <form onsubmit="addFlight(event)">
+                <div class="form-group">
+                    <label class="form-label">מוצא</label>
+                    <input type="text" id="flightFrom" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">יעד</label>
+                    <input type="text" id="flightTo" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">תאריך ושעה</label>
+                    <input type="datetime-local" id="flightDate" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">חברת תעופה</label>
+                    <input type="text" id="flightAirline" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">מחיר</label>
+                    <input type="number" id="flightPrice" class="form-input" placeholder="₪">
+                </div>
+                <div class="flex gap-1">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">שמור</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeFlightModal()">ביטול</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hotel Modal -->
+    <div id="hotelModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">הוסף מלון</h3>
+                <button class="close-btn" onclick="closeHotelModal()">×</button>
+            </div>
+            <form onsubmit="addHotel(event)">
+                <div class="form-group">
+                    <label class="form-label">שם המלון</label>
+                    <input type="text" id="hotelName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">מיקום</label>
+                    <input type="text" id="hotelLocation" class="form-input" required>
+                </div>
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">צ'ק-אין</label>
+                        <input type="date" id="hotelCheckin" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">צ'ק-אאוט</label>
+                        <input type="date" id="hotelCheckout" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">מחיר ללילה</label>
+                    <input type="number" id="hotelPrice" class="form-input" placeholder="₪">
+                </div>
+                <div class="flex gap-1">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">שמור</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeHotelModal()">ביטול</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Attraction Modal -->
+    <div id="attractionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">הוסף אטרקציה</h3>
+                <button class="close-btn" onclick="closeAttractionModal()">×</button>
+            </div>
+            <form onsubmit="addAttraction(event)">
+                <div class="form-group">
+                    <label class="form-label">שם האטרקציה</label>
+                    <input type="text" id="attractionName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">קטגוריה</label>
+                    <select id="attractionCategory" class="form-select">
+                        <option>מקדש</option>
+                        <option>חוף</option>
+                        <option>פארק</option>
+                        <option>שוק</option>
+                        <option>מוזיאון</option>
+                        <option>אחר</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">תיאור</label>
+                    <textarea id="attractionDesc" class="form-textarea"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">מחיר כניסה</label>
+                    <input type="text" id="attractionPrice" class="form-input" placeholder="באט או ₪">
+                </div>
+                <div class="flex gap-1">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">שמור</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAttractionModal()">ביטול</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Packing Modal -->
+    <div id="packingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">הוסף פריט</h3>
+                <button class="close-btn" onclick="closePackingModal()">×</button>
+            </div>
+            <form onsubmit="addPackingItem(event)">
+                <div class="form-group">
+                    <label class="form-label">שם הפריט</label>
+                    <input type="text" id="packingItem" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">קטגוריה</label>
+                    <select id="packingCategory" class="form-select">
+                        <option value="clothing">ביגוד</option>
+                        <option value="health">בריאות</option>
+                        <option value="tech">טכנולוגיה</option>
+                    </select>
+                </div>
+                <div class="flex gap-1">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">שמור</button>
+                    <button type="button" class="btn btn-secondary" onclick="closePackingModal()">ביטול</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Budget Modal -->
+    <div id="budgetModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">הוסף הוצאה</h3>
+                <button class="close-btn" onclick="closeBudgetModal()">×</button>
+            </div>
+            <form onsubmit="addBudgetItem(event)">
+                <div class="form-group">
+                    <label class="form-label">שם ההוצאה</label>
+                    <input type="text" id="budgetName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">סכום (₪)</label>
+                    <input type="number" id="budgetAmount" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">הערות</label>
+                    <textarea id="budgetNotes" class="form-textarea"></textarea>
+                </div>
+                <div class="flex gap-1">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">שמור</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeBudgetModal()">ביטול</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">🔗 שיתוף וסנכרון</h3>
+                <button class="close-btn" onclick="closeShareModal()">×</button>
+            </div>
+            
+            <div id="share-content">
+                <!-- Create New Trip -->
+                <div id="share-create" style="display: none;">
+                    <p class="mb-1">צור קוד שיתוף חדש כדי לגשת לטיול מכל מכשיר ולשתף עם המשפחה:</p>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="createNewTrip()">צור קוד שיתוף חדש</button>
+                    
+                    <div class="or-divider">או</div>
+                    
+                    <p class="mb-1">יש לך כבר קוד? הצטרף לטיול קיים:</p>
+                    <div class="form-group">
+                        <input type="text" id="joinCode" class="form-input" placeholder="הזן קוד בן 6 תווים" maxlength="6" style="text-transform: uppercase; text-align: center; font-size: 1.25rem; letter-spacing: 2px;">
+                    </div>
+                    <button class="btn btn-secondary" style="width: 100%;" onclick="joinTrip()">הצטרף לטיול</button>
+                </div>
+                
+                <!-- Connected State -->
+                <div id="share-connected" style="display: none;">
+                    <p class="text-secondary mb-1">הטיול מסונכרן! שתף את הקוד עם בני המשפחה:</p>
+                    
+                    <div class="share-code">
+                        <div class="share-code-value" id="tripCodeDisplay">------</div>
+                        <button class="btn btn-sm btn-secondary mt-1" onclick="copyCode()">📋 העתק קוד</button>
+                    </div>
+                    
+                    <div class="info-card" style="margin-top: 1rem;">
+                        <div class="info-item">
+                            <span class="info-label">✅ מסונכרן לענן</span>
+                            <span class="info-value">שינויים נשמרים אוטומטית</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">👥 שיתוף</span>
+                            <span class="info-value">שלח את הקוד למשפחה</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">📱 גישה</span>
+                            <span class="info-value">מכל מכשיר עם הקוד</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-danger mt-2" style="width: 100%;" onclick="disconnectTrip()">🔌 התנתק מהענן</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <!-- Leaflet for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
